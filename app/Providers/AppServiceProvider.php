@@ -17,13 +17,10 @@ class AppServiceProvider extends ServiceProvider
         \App\Models\Topic::observe(\App\Observers\TopicObserver::class);
     }
 
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
     public function register()
     {
-        //
+        if (app()->isLocal()) {
+            $this->app->register(\VIACreative\SudoSu\ServiceProvider::class);
+        }
     }
 }
